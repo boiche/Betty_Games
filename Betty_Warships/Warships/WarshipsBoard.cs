@@ -47,12 +47,16 @@ namespace Betty_Games.Warships
             if (isHit)
             {
                 int shipId = int.Parse(currentCell.ToString());
-                _shipHP[shipId]--;
 
                 if (_shipHP[shipId] > 0)
+                {
+                    _shipHP[shipId]--;
                     status = WarshipsShotStatus.Hit;
+                }
                 else
+                {
                     status = WarshipsShotStatus.Sunk;
+                }
 
                 _board[command.Row, command.Col] = HitCell;
             }

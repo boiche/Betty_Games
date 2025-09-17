@@ -11,7 +11,7 @@ namespace Betty_Games.Tests.Warships
         {
             WarshipsGameEngine gameEngine = new(MockGameRenderer.Object, MockGameInputProvider.Object, MockConfiguration.Object);
 
-            Assert.IsInstanceOfType<IGameRenderer>(gameEngine.GameRenderer);            
+            Assert.IsInstanceOfType<IGameRenderer>(gameEngine.GameRenderer);
             Assert.IsInstanceOfType<IGameInputProvider>(gameEngine.GameInputProvider);
             Assert.IsFalse(gameEngine.IsGameOver);
         }

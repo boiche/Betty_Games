@@ -4,7 +4,6 @@ using Betty_Games.Warships;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Serilog;
 
 namespace Betty_Games
 {
@@ -20,16 +19,14 @@ namespace Betty_Games
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    //services.Configure<AppConfiguration>(hostContext.Configuration.GetSection("Board"));
                     services.AddSingleton<IGameController, WarshipsGameController>();
                     services.AddSingleton<IGameEngine, WarshipsGameEngine>();
                     services.AddSingleton<IGameRenderer, WarshipsGameRenderer>();
                     services.AddSingleton<IGameInputProvider, WarshipsInputProvider>();
-                    services.AddSingleton<IAppConfiguration>();
+                    services.AddSingleton<IAppConfiguration, AppConfiguration>();
                 })
                 .UseEnvironment(Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Development")
-                .UseConsoleLifetime()
-                .UseSerilog();
+                .UseConsoleLifetime();
 
             var host = builder.Build();
             var gameController = host.Services.GetService<IGameController>();

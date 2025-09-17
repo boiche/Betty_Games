@@ -1,5 +1,4 @@
-﻿using Serilog;
-using System.Text;
+﻿using System.Text;
 
 namespace Betty_Games.Warships
 {
@@ -49,9 +48,8 @@ namespace Betty_Games.Warships
                 command = new WarshipsCommand(col - 1, parsedRow);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Log.Error(e, e.Message);
                 return false;
             }
         }

@@ -1,6 +1,7 @@
 ﻿using Betty_Games.Configuration;
 using Betty_Games.Interfaces;
 using Betty_Games.Warships;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -9,23 +10,30 @@ namespace Betty_Games
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var builder = Host.CreateDefaultBuilder()
-                .ConfigureAppConfiguration(config => config.Add(new AppConfigurationSource()))
+                .ConfigureAppConfiguration(config =>
+                {
+                    config.SetBasePath($"{AppContext.BaseDirectory}/Configuration");
+                    config.AddJsonFile($"appsettings.Development.json", true, true);
+                })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.Configure<AppConfiguration>(hostContext.Configuration);
-                    services.AddHostedService<GameController>();
+                    //services.Configure<AppConfiguration>(hostContext.Configuration.GetSection("Board"));
+                    services.AddSingleton<IGameController, WarshipsGameController>();
                     services.AddSingleton<IGameEngine, WarshipsGameEngine>();
                     services.AddSingleton<IGameRenderer, WarshipsGameRenderer>();
+                    services.AddSingleton<IGameInputProvider, WarshipsInputProvider>();
+                    services.AddSingleton<IAppConfiguration>();
                 })
                 .UseEnvironment(Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Development")
                 .UseConsoleLifetime()
                 .UseSerilog();
 
             var host = builder.Build();
-            host.Run();
+            var gameController = host.Services.GetService<IGameController>();
+            gameController?.Run();
         }
     }
 }

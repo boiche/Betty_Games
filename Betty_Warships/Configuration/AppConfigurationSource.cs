@@ -6,7 +6,7 @@ namespace Betty_Games.Configuration
     {
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
-            return new AppConfiguration();
+            return default;
         }
     }
 }

@@ -23,14 +23,32 @@ namespace Betty_Games.Warships
             Console.ResetColor();
         }
 
-        public void Render(IGameMap map)
+        public void Render<T>(IGameMap<T> map)
         {
-            Board board = (Board)map;
-            for (int row = 0; row < board.Rows; row++)
+            if (map is not WarshipsBoard)
+                throw new NotSupportedException($"Provided map of type {map.GetType().Name} is not supported");
+
+            Console.Write("  ");
+            for (int i = 1; i <= map.Cols; i++)
             {
-                for (int col = 0; col < board.Cols; col++)
+                if (i < 10)
+                    Console.Write($" {i} ");
+                else
+                    Console.Write($"{i} ");
+            }
+            Console.WriteLine();
+
+            for (int row = 0; row < map.Rows; row++)
+            {
+                string colName = WarshipsBoard.GetColName(row);
+                if (colName.Length == 1)
+                    Console.Write($"{colName} ");
+                else
+                    Console.Write(colName);
+
+                for (int col = 0; col < map.Cols; col++)
                 {
-                    Console.Write(board[row, col]);
+                    Console.Write($" {map[row, col]} ");
                 }
                 Console.WriteLine();
             }

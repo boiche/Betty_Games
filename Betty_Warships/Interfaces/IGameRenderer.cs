@@ -8,7 +8,12 @@
         /// <summary>
         /// Renders the current state of the game to the display.
         /// </summary>
-        void Render(IGameMap gameMap);
+        void Render<T>(IGameMap<T> gameMap);
+        /// <summary>
+        /// Displays a message to the player
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="level"></param>
         void DisplayMessage(string message, MessageLevel level);
     }
 }

@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Betty_Warships\Betty_Games.csproj" />
+    <ProjectReference Include="..\Betty_Games\Betty_Games.csproj" />
   </ItemGroup>
 
   <ItemGroup>

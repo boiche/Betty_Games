@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Betty_Games", "Betty_Warships\Betty_Games.csproj", "{AC71FD72-E514-4EAB-BC18-099094940C74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Betty_Games", "Betty_Games\Betty_Games.csproj", "{AC71FD72-E514-4EAB-BC18-099094940C74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Betty_Games.Tests", "Betty_Warships.Tests\Betty_Games.Tests.csproj", "{F0D07933-918B-4017-813F-7D2AC03BFA63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Betty_Games.Tests", "Betty_Games.Tests\Betty_Games.Tests.csproj", "{F0D07933-918B-4017-813F-7D2AC03BFA63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
